@@ -19,5 +19,12 @@ var io = socket(server);
 //listening for connection from socket.
 //all information about that socket is made available in the socket argument.
 io.on('connection',function(socket){
-    console.log('socket connection established.')
+    console.log('socket: ' + socket.id + ' connection established.')
+
+    //listen for custom events
+    //Make sure to write the socket events inside the main connection.
+    socket.on('chat',function(data){
+    io.sockets.emit('chat',data);
+})
 });
+
