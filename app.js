@@ -23,8 +23,15 @@ io.on('connection',function(socket){
 
     //listen for custom events
     //Make sure to write the socket events inside the main connection.
+
+    //listening for chat message
     socket.on('chat',function(data){
     io.sockets.emit('chat',data);
+
+    //listening for typing
+    socket.on('typing',function(data){
+        socket.broadcast.emit('typing',data);
+    })
 })
 });
 
